@@ -10,3 +10,13 @@ if (firstSign == secondSign)
 {
     Console.WriteLine("draw");
 }
+else if ((firstSign == "paper" && secondSign == "rock") ||
+    (firstSign == "rock" && secondSign == "scissors") ||
+    (firstSign == "scissors" && secondSign == "paper"))
+{
+    Console.WriteLine("Player 1 won");
+}
+else
+{
+    Console.WriteLine("Player 2 won");
+}
