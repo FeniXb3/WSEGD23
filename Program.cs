@@ -14,6 +14,12 @@ while (firstSign != "rock" && firstSign != "paper" && firstSign != "scissors")
 Console.WriteLine("Player 2, provide sign:");
 string secondSign = Console.ReadLine();
 
+while (secondSign != "rock" && secondSign != "paper" && firstSign != "scissors")
+{
+    Console.WriteLine("wrong sign");
+    secondSign = Console.ReadLine();
+}
+
 if (firstSign == secondSign)
 {
     Console.WriteLine("draw");
