@@ -1,17 +1,14 @@
 ﻿string[] availableSigns = {"rock", "paper", "scissors"};
-						//   0    <    1    <     2   <  0?
-Console.WriteLine(availableSigns[2]);
 
 while(true)
 {
 	Console.WriteLine("Player 1, provide sign:");
-	string? firstSign = Console.ReadLine();
+	string? firstSign = Console.ReadLine().ToLower();
 	
-	//while (firstSign != "rock" && firstSign != "paper" && firstSign != "scissors" && firstSign != "quit")
 	while (!availableSigns.Contains(firstSign) && firstSign != "quit")
 	{
 		Console.WriteLine("wrong sign");
-		firstSign = Console.ReadLine();
+		firstSign = Console.ReadLine().ToLower();
 	}
 
 	if (firstSign == "quit")
@@ -20,12 +17,12 @@ while(true)
 	}
 
 	Console.WriteLine("Player 2, provide sign:");
-	string? secondSign = Console.ReadLine();
+	string? secondSign = Console.ReadLine().ToLower();
 
 	while (!availableSigns.Contains(secondSign) && secondSign != "quit")
 	{
 		Console.WriteLine("wrong sign");
-		secondSign = Console.ReadLine();
+		secondSign = Console.ReadLine().ToLower();
 	}
 
 	if (secondSign == "quit")
@@ -33,13 +30,18 @@ while(true)
 		break;
 	}
 
+	int secondSignIndex = Array.IndexOf(availableSigns, secondSign);
+	int secondSignWinningIndex = (secondSignIndex + 1) % availableSigns.Length;
+	string secondSignWinningSign = availableSigns[secondSignWinningIndex];
+
 	if (firstSign == secondSign)
 	{
 		Console.WriteLine("draw");
 	}
-	else if ((firstSign == "paper" && secondSign == "rock") || // to change - use availableSigns and modulo
-		(firstSign == "rock" && secondSign == "scissors") ||
-		(firstSign == "scissors" && secondSign == "paper"))
+	// else if ((firstSign == "paper" && secondSign == "rock") || // to change - use availableSigns and moduol
+	// 	(firstSign == "rock" && secondSign == "scissors") ||
+	// 	(firstSign == "scissors" && secondSign == "paper"))
+	else if(firstSign == secondSignWinningSign)
 	{
 		Console.WriteLine("Player 1 won");
 	}
