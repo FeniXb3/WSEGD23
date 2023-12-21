@@ -56,3 +56,7 @@ while(true)
 
 	Console.WriteLine($"[Player 1] {firstPlayerScore} : {secondPlayerScore} [Player 2]");
 }
+
+Console.WriteLine("The game is over now");
+Console.WriteLine("Press any key to continue");
+Console.ReadKey();
