@@ -1,10 +1,18 @@
-﻿string[] availableSigns = { "rock", "paper", "scissors" };
+﻿using System;
+using System.Linq;
+string[] availableSigns = { "rock", "paper", "scissors" };
 
 int firstPlayerScore = 0;
 int secondPlayerScore = 0;
-bool playingSolo = true;
+bool playingSolo = false;
 
 Random rng = new Random();
+
+Console.WriteLine("What's your name, player 1?");
+string firstPlayerName = Console.ReadLine();
+
+Console.WriteLine("What's your name, player 2?");
+string secondPlayerName = Console.ReadLine();
 
 Console.WriteLine("How many wins to win?");
 // winsToWin = int.Parse(Console.ReadLine());
@@ -20,21 +28,13 @@ Console.WriteLine(winsToWin);
 // while (!(firstPlayerScore >= 3 || secondPlayerScore >= 3))
 while (firstPlayerScore < winsToWin && secondPlayerScore < winsToWin)
 {
-	Console.WriteLine("Player 1, provide sign:");
-	string? firstSign = Console.ReadLine()?.ToLower().Trim();
-
-	while (!availableSigns.Contains(firstSign) && firstSign != "quit")
-	{
-		Console.WriteLine("wrong sign");
-		firstSign = Console.ReadLine()?.ToLower().Trim();
-	}
-
+	string firstSign = GetSign(firstPlayerName);
 	if (firstSign == "quit")
 	{
 		break;
 	}
 
-	string? secondSign;
+	string secondSign;
 
 	if (playingSolo)
 	{
@@ -44,14 +44,7 @@ while (firstPlayerScore < winsToWin && secondPlayerScore < winsToWin)
 	}
 	else
 	{
-		Console.WriteLine("Player 2, provide sign:");
-		secondSign = Console.ReadLine()?.ToLower().Trim();
-
-		while (!availableSigns.Contains(secondSign) && secondSign != "quit")
-		{
-			Console.WriteLine("wrong sign");
-			secondSign = Console.ReadLine()?.ToLower().Trim();
-		}
+		secondSign = GetSign(secondPlayerName);
 
 		if (secondSign == "quit")
 		{
@@ -69,18 +62,18 @@ while (firstPlayerScore < winsToWin && secondPlayerScore < winsToWin)
 	}
 	else if (firstSign == secondSignWinningSign)
 	{
-		Console.WriteLine("Player 1 won");
+		Console.WriteLine($"{firstPlayerName} won");
 		// firstPlayerScore = secondPlayerScore + 1;
 		firstPlayerScore += 1;
 		// firstPlayerScore++;
 	}
 	else
 	{
-		Console.WriteLine("Player 2 won");
+		Console.WriteLine($"{secondPlayerName} won");
 		secondPlayerScore += 1;
 	}
 
-	Console.WriteLine($"[Player 1] {firstPlayerScore} : {secondPlayerScore} [Player 2]");
+	Console.WriteLine($"[{firstPlayerName}] {firstPlayerScore} : {secondPlayerScore} [{secondPlayerName}]");
 
 	// if (firstPlayerScore >= 3 || secondPlayerScore >= 3)
 	// {
@@ -92,3 +85,16 @@ while (firstPlayerScore < winsToWin && secondPlayerScore < winsToWin)
 Console.WriteLine("The game is over now");
 Console.WriteLine("Press any key to continue");
 Console.ReadKey();
+
+string GetSign(string playerName)
+{
+	Console.WriteLine($"{playerName}, provide sign:");
+	string sign = Console.ReadLine()?.ToLower().Trim();
+
+	while (!availableSigns.Contains(sign) && sign != "quit")
+	{
+		Console.WriteLine("wrong sign");
+		sign = Console.ReadLine()?.ToLower().Trim();
+	}
+	return sign;
+}
