@@ -8,11 +8,8 @@ bool playingSolo = false;
 
 Random rng = new Random();
 
-Console.WriteLine("What's your name, player 1?");
-string firstPlayerName = Console.ReadLine() ?? "Player 1";
-
-Console.WriteLine("What's your name, player 2?");
-string secondPlayerName = Console.ReadLine() ?? "Player 2";
+string firstPlayerName = GetName(1);
+string secondPlayerName = GetName(2);
 
 Console.WriteLine("How many wins to win?");
 // winsToWin = int.Parse(Console.ReadLine());
@@ -85,6 +82,14 @@ while (firstPlayerScore < winsToWin && secondPlayerScore < winsToWin)
 Console.WriteLine("The game is over now");
 Console.WriteLine("Press any key to continue");
 Console.ReadKey();
+
+string GetName(int playerNumber)
+{
+	Console.WriteLine($"What's your name, player {playerNumber}?");
+	string? input = Console.ReadLine();
+
+	return string.IsNullOrWhiteSpace(input) ? $"Player {playerNumber}" : input;
+}
 
 string GetSign(string playerName)
 {
