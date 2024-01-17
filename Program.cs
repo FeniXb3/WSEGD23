@@ -9,10 +9,10 @@ bool playingSolo = false;
 Random rng = new Random();
 
 Console.WriteLine("What's your name, player 1?");
-string firstPlayerName = Console.ReadLine();
+string firstPlayerName = Console.ReadLine() ?? "Player 1";
 
 Console.WriteLine("What's your name, player 2?");
-string secondPlayerName = Console.ReadLine();
+string secondPlayerName = Console.ReadLine() ?? "Player 2";
 
 Console.WriteLine("How many wins to win?");
 // winsToWin = int.Parse(Console.ReadLine());
@@ -89,12 +89,12 @@ Console.ReadKey();
 string GetSign(string playerName)
 {
 	Console.WriteLine($"{playerName}, provide sign:");
-	string sign = Console.ReadLine()?.ToLower().Trim();
+	string sign = Console.ReadLine()?.ToLower().Trim() ?? string.Empty;
 
 	while (!availableSigns.Contains(sign) && sign != "quit")
 	{
 		Console.WriteLine("wrong sign");
-		sign = Console.ReadLine()?.ToLower().Trim();
+		sign = Console.ReadLine()?.ToLower().Trim() ?? string.Empty;
 	}
 	return sign;
 }
