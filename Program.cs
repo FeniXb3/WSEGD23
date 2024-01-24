@@ -93,6 +93,11 @@ string GetName(int playerNumber)
 
 string GetSign(string playerName)
 {
+	Console.WriteLine("Available sings:");
+	foreach (string element in availableSigns)
+	{
+		Console.WriteLine(element);
+	}
 	Console.WriteLine($"{playerName}, provide sign:");
 	string sign = Console.ReadLine()?.ToLower().Trim() ?? string.Empty;
 
